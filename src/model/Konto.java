@@ -27,12 +27,12 @@ public abstract class Konto {
         this.inhaber = inhaber;
     }
 
-    public void einzahlen(double betrag){
-        this.kontostand += betrag;
+    public void einzahlen(double betrag) {
+        this.kontostand += Math.abs(betrag);
     }
 
-    public void abheben(double betrag){
-        this.kontostand -= betrag;
+    public void abheben(double betrag) {
+        this.kontostand -= Math.abs(betrag);
     }
 
     public abstract void zinsenAusschütten();

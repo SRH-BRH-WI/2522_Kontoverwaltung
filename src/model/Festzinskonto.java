@@ -10,4 +10,19 @@ public class Festzinskonto extends Sparkonto {
         this.laufzeit = laufzeit;
         this.abgelaufeneZeit = abgelaufeneZeit;
     }
+
+    @Override
+    public void abheben(double betrag) {
+        if (abgelaufeneZeit >= laufzeit) {
+            super.abheben(betrag);
+        }
+    }
+
+    @Override
+    public void zinsenAusschütten() {
+        if (abgelaufeneZeit < laufzeit) {
+            super.zinsenAusschütten();
+            abgelaufeneZeit++;
+        }
+    }
 }

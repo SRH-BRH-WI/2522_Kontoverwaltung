@@ -1,6 +1,6 @@
 package model;
 
-public class Girokonto extends Konto{
+public class Girokonto extends Konto {
     private static final double GIRO_GEBÜHREN = 0.1;
     private final double dispokredit;
 
@@ -18,6 +18,15 @@ public class Girokonto extends Konto{
     }
 
     @Override
+    public void abheben(double betrag) {
+        betrag = Math.abs(betrag) + GIRO_GEBÜHREN;
+        if (betrag >= getKontostand() + dispokredit) {
+            super.abheben(betrag);
+        }
+    }
+
+    @Override
     public void zinsenAusschütten() {
+        // hier passiert nix
     }
 }
