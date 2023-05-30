@@ -25,4 +25,9 @@ public class Festzinskonto extends Sparkonto {
             abgelaufeneZeit++;
         }
     }
+
+    public Konto clone() {
+        return new Festzinskonto(getKontonummer(), getInhaber(), getKontostand(), getZinssatz(),
+                laufzeit, abgelaufeneZeit);
+    }
 }

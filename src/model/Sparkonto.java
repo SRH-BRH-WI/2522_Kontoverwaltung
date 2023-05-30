@@ -22,7 +22,7 @@ public class Sparkonto extends Konto {
     @Override
     public void abheben(double betrag) {
         betrag = Math.abs(betrag) + SPAR_GEBÜHREN;
-        if (betrag >= getKontostand()) {
+        if (betrag <= getKontostand()) {
             super.abheben(betrag);
         }
     }
@@ -31,5 +31,9 @@ public class Sparkonto extends Konto {
     public void zinsenAusschütten() {
         double zinsen = getKontostand() * zinssatz / 100;
         super.einzahlen(zinsen);
+    }
+
+    public Konto clone() {
+        return new Sparkonto(getKontonummer(), getInhaber(), getKontostand(), zinssatz);
     }
 }

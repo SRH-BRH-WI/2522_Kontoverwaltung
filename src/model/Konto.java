@@ -36,4 +36,6 @@ public abstract class Konto {
     }
 
     public abstract void zinsenAusschütten();
+
+    public abstract Konto clone();
 }

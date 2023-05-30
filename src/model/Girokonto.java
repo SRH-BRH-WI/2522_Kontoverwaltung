@@ -20,7 +20,7 @@ public class Girokonto extends Konto {
     @Override
     public void abheben(double betrag) {
         betrag = Math.abs(betrag) + GIRO_GEBÜHREN;
-        if (betrag >= getKontostand() + dispokredit) {
+        if (betrag <= getKontostand() + dispokredit) {
             super.abheben(betrag);
         }
     }
@@ -30,5 +30,9 @@ public class Girokonto extends Konto {
         // hier passiert nix
         // -- sout Ausgaben dürfen hier nicht mehr rein -> Single Responsibility Principle
         // System.out.println("Zinsen ausschütten ist mit einem Girokonto nicht möglich.");
+    }
+
+    public Konto clone() {
+        return new Girokonto(getKontonummer(), getInhaber(), getKontostand(), dispokredit);
     }
 }
