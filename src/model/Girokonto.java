@@ -28,5 +28,7 @@ public class Girokonto extends Konto {
     @Override
     public void zinsenAusschütten() {
         // hier passiert nix
+        // -- sout Ausgaben dürfen hier nicht mehr rein -> Single Responsibility Principle
+        // System.out.println("Zinsen ausschütten ist mit einem Girokonto nicht möglich.");
     }
 }
