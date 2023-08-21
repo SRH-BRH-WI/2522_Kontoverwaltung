@@ -3,8 +3,11 @@ package view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
+    private JButton buttonAnzeigen;
+    private JTextField textfieldKontonummer, textfieldInhaber, textfieldKontostand;
 
     public MainView() {
         setTitle("Kontoverwaltung");
@@ -21,18 +24,39 @@ public class MainView extends JFrame {
 
         // Ebene 2
         centerPanel.add( new JLabel("Kontonummer:") );
-        centerPanel.add( new JTextField() );
+        textfieldKontonummer = new JTextField();
+        centerPanel.add( textfieldKontonummer );
         centerPanel.add( new JLabel("Inhaber:") );
-        centerPanel.add( new JTextField() );
+        textfieldInhaber = new JTextField();
+        centerPanel.add( textfieldInhaber );
         centerPanel.add( new JLabel("Kontostand:") );
-        centerPanel.add( new JTextField() );
+        textfieldKontostand = new JTextField();
+        centerPanel.add( textfieldKontostand );
 
-        southPanel.add( new JButton("Anzeigen") );
+        buttonAnzeigen = new JButton("Anzeigen");
+        southPanel.add( buttonAnzeigen );
         southPanel.add( new JButton("Löschen") );
         southPanel.add( new JButton("Neu") );
 
         setVisible(true);
         pack();
+    }
+
+    public void setButtonAnzeigenActionListener(ActionListener listener) {
+        buttonAnzeigen.addActionListener(listener);
+    }
+
+    public int getKontonummer() {
+        // Achtung, Fehler (vom Anwender) werden hier erstmal ignoriert
+        return Integer.parseInt( textfieldKontonummer.getText() );
+    }
+
+    public void setInhaber(String inhaber) {
+        textfieldInhaber.setText(inhaber);
+    }
+
+    public void setKontostand(double kontostand) {
+        textfieldKontostand.setText( String.valueOf(kontostand) );
     }
 
     public static void main(String[] args) {

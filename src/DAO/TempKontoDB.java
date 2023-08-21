@@ -1,5 +1,6 @@
 package DAO;
 
+import model.Girokonto;
 import model.Konto;
 
 import java.util.ArrayList;
@@ -9,6 +10,10 @@ public class TempKontoDB implements KontoDAO {
 
     // unsere interne in-memory Datenbank
     private List<Konto> kontenList = new ArrayList<>();
+
+    public TempKontoDB() {
+        insertKonto( new Girokonto(1, "Mr. Giro", 500, 350) );
+    }
 
     @Override
     public boolean insertKonto(Konto k) {
