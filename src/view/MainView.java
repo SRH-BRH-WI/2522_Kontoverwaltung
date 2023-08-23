@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
-    private JButton buttonAnzeigen;
+    private JButton buttonAnzeigen, buttonLöschen;
     private JTextField textfieldKontonummer, textfieldInhaber, textfieldKontostand;
 
     public MainView() {
@@ -35,15 +35,29 @@ public class MainView extends JFrame {
 
         buttonAnzeigen = new JButton("Anzeigen");
         southPanel.add( buttonAnzeigen );
-        southPanel.add( new JButton("Löschen") );
+        buttonLöschen = new JButton("Löschen");
+        southPanel.add( buttonLöschen );
         southPanel.add( new JButton("Neu") );
 
         setVisible(true);
         pack();
     }
 
+    public boolean confirmDialog(String nachricht, String titel) {
+        return (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this,
+                nachricht, titel, JOptionPane.YES_NO_OPTION));
+    }
+
+    public void messageDialog(String nachricht) {
+        JOptionPane.showMessageDialog(this, nachricht);
+    }
+
     public void setButtonAnzeigenActionListener(ActionListener listener) {
         buttonAnzeigen.addActionListener(listener);
+    }
+
+    public void setButtonLöschenActionListener(ActionListener listener) {
+        buttonLöschen.addActionListener(listener);
     }
 
     public int getKontonummer() {
